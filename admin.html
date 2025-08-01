@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>ระบบจัดการสินค้า</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background-color: #e6f2ff;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background-color: #ffffff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #005c99;
+    }
+    fieldset {
+      border: 2px solid #cce6ff;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      padding: 15px 20px;
+      background-color: #f9fcff;
+    }
+    legend {
+      font-weight: bold;
+      color: #007acc;
+      font-size: 16px;
+      padding: 0 8px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 12px;
+      color: #333;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="file"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background-color: #0074D9;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ระบบจัดการสินค้า</h1>
+    <form action="#">
+      
+      <fieldset>
+        <legend>ประเภทสินค้า</legend>
+        <select name="category" id="category" required onchange="toggleSizeField()">
+          <option value="">-- เลือก --</option>
+          <option value="เสื้อ">เสื้อ</option>
+          <option value="กระเป๋า">กระเป๋า</option>
+          <option value="แก้ว">แก้ว</option>
+          <option value="หมวก">หมวก</option>
+          <option value="ร่ม">ร่ม</option>
+          <option value="เข็มกลัด">เข็มกลัด</option>
+          <option value="สมุด">สมุด</option>
+          <option value="ปากกา">ปากกา</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>รายละเอียดสินค้า</legend>
+
+        <label for="color">สี:</label>
+        <input type="text" id="color" name="color" placeholder="เช่น ฟ้า, ขาว, น้ำเงิน" required>
+
+        <!-- ขนาดสินค้า -->
+        <div id="sizeSelectField" style="display:none;">
+          <label for="sizeSelect">ขนาด:</label>
+          <select id="sizeSelect" name="size">
+            <option value="">-- เลือกขนาด --</option>
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+            <option value="3XL">3XL</option>
+          </select>
+        </div>
+
+        <div id="sizeInputField" style="display:none;">
+          <label for="sizeInput">ขนาด:</label>
+          <input type="text" id="sizeInput" name="size" placeholder="ระบุขนาด เช่น 100cm, 50x70cm">
+        </div>
+
+        <label for="description">คำอธิบายเพิ่มเติม:</label>
+        <textarea id="description" name="description" rows="3" placeholder="วัสดุ, หมายเหตุ หรือรายละเอียดพิเศษ"></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>ราคาและรูปภาพ</legend>
+
+        <label for="price">ราคาสินค้า (บาท):</label>
+        <input type="number" id="price" name="price" min="0" required>
+
+        <label for="productImage">รูปภาพสินค้า:</label>
+        <input type="file" id="productImage" name="productImage" accept="image/*">
+      </fieldset>
+
+      <button type="submit">เพิ่มสินค้า</button>
+    </form>
+  </div>
+
+  <script>
+    function toggleSizeField() {
+      const category = document.getElementById("category").value;
+      const sizeSelectField = document.getElementById("sizeSelectField");
+      const sizeInputField = document.getElementById("sizeInputField");
+
+      if (category === "เสื้อ") {
+        sizeSelectField.style.display = "block";
+        sizeInputField.style.display = "none";
+        document.getElementById("sizeInput").value = "";
+      } else if (category) {
+        sizeSelectField.style.display = "none";
+        sizeInputField.style.display = "block";
+        document.getElementById("sizeSelect").value = "";
+      } else {
+        sizeSelectField.style.display = "none";
+        sizeInputField.style.display = "none";
+        document.getElementById("sizeSelect").value = "";
+        document.getElementById("sizeInput").value = "";
+      }
+    }
+  </script>
+</body>
+</html>

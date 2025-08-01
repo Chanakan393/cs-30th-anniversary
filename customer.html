@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>ฟอร์มสั่งซื้อของที่ระลึก</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background-color: #eaffea;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 750px;
+      margin: auto;
+      background-color: #ffffff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2e7d32;
+    }
+    fieldset {
+      border: 2px solid #c8e6c9;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      padding: 15px 20px;
+      background-color: #f6fff6;
+    }
+    legend {
+      font-weight: bold;
+      color: #388e3c;
+      font-size: 16px;
+      padding: 0 8px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 12px;
+      color: #333;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="file"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #388e3c;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ฟอร์มสั่งซื้อของที่ระลึก 30 ปี</h1>
+    <form action="#">
+      
+      <fieldset>
+        <legend>ข้อมูลลูกค้า</legend>
+
+        <label for="fullname">ชื่อ - นามสกุล:</label>
+        <input type="text" id="fullname" name="fullname" required>
+
+        <label for="address">ที่อยู่:</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+
+        <label for="phone">เบอร์โทรศัพท์:</label>
+        <input type="text" id="phone" name="phone" required>
+      </fieldset>
+
+      <fieldset>
+        <legend>รายการสั่งซื้อ</legend>
+
+        <label for="product">ประเภทสินค้า:</label>
+        <select name="product" id="product" required onchange="toggleSizeField()">
+          <option value="">-- เลือก --</option>
+          <option value="เสื้อ">เสื้อ</option>
+          <option value="กระเป๋า">กระเป๋า</option>
+          <option value="แก้ว">แก้ว</option>
+          <option value="หมวก">หมวก</option>
+          <option value="ร่ม">ร่ม</option>
+          <option value="เข็มกลัด">เข็มกลัด</option>
+          <option value="สมุด">สมุด</option>
+          <option value="ปากกา">ปากกา</option>
+        </select>
+
+        <label for="quantity">จำนวน:</label>
+        <input type="number" id="quantity" name="quantity" min="1" required>
+
+        <label for="color">สี:</label>
+        <input type="text" id="color" name="color" placeholder="เช่น ขาว, เขียว">
+
+        <!-- กล่องขนาดที่จะแสดงเฉพาะเมื่อเลือก "เสื้อ" -->
+        <div id="sizeField" style="display:none;">
+          <label for="size">ขนาด:</label>
+          <select id="size" name="size">
+            <option value="">-- เลือกขนาด --</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+            <option value="3XL">3XL</option>
+          </select>
+        </div>
+
+        <!-- ควบคุมการแสดง/ซ่อน -->
+        <script>
+          function toggleSizeField() {
+            const productSelect = document.getElementById('product');
+            const sizeField = document.getElementById('sizeField');
+            if (productSelect.value === 'เสื้อ') {
+              sizeField.style.display = 'block';
+            } 
+            else {
+              sizeField.style.display = 'none';
+              document.getElementById('size').value = ''; // ล้างค่าถ้าไม่ใช่เสื้อ
+            }
+          }
+        </script>
+      </fieldset>
+
+      <fieldset>
+        <legend>การชำระเงินและจัดส่ง</legend>
+
+        <label for="payment">ช่องทางชำระเงิน:</label>
+        <select name="payment" id="payment" required>
+          <option value="">-- เลือก --</option>
+          <option value="โอนผ่านธนาคาร">โอนผ่านธนาคาร</option>
+          <option value="เก็บเงินปลายทาง">เก็บเงินปลายทาง</option>
+        </select>
+
+        <label for="slip">แนบรูปสลิป (ถ้ามี):</label>
+        <input type="file" id="slip" name="slip" accept="image/*">
+
+        <label for="date">วันที่ซื้อ:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="delivery">การรับสินค้า:</label>
+        <select name="delivery" id="delivery" required>
+          <option value="">-- เลือก --</option>
+          <option value="รับเอง">รับเอง</option>
+          <option value="จัดส่ง">จัดส่ง</option>
+        </select>
+      </fieldset>
+
+      <button type="submit">ยืนยันการสั่งซื้อ</button>
+    </form>
+  </div>
+</body>
+</html>
