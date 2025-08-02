@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>หน้าเมนูระบบสินค้า</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background: linear-gradient(to bottom right, #cceeff, #e6f7ff);
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #0077b6;
+      margin-bottom: 30px;
+    }
+    .menu-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 300px;
+    }
+    .menu-buttons a {
+      display: block;
+      text-decoration: none;
+      background-color: #0074D9;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    .menu-buttons a:hover {
+      background-color: #005fa3;
+    }
+
+    @media (min-width: 600px) {
+      .menu-buttons {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>ระบบสินค้าโรงเรียน</h1>
+
+    <div class="menu-buttons">
+      <a href="admin.html">เข้าสู่ระบบแอดมิน</a>
+      <a href="customer.html">เข้าสู่หน้าลูกค้า</a>
+    </div>
+  </div>
+
+</body>
+</html>
